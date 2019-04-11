@@ -1,4 +1,5 @@
 # Build a POM File, Feature file in Automation manner
-POM - Page Object Model - SitePrism
-Feature - Automation Testing script will written under this File.
+
+1. POM - Page Object Model - SitePrism.
+2. Feature -  Automation Testing script will written under this File.
 
