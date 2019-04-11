@@ -1,0 +1,35 @@
+==================================================================
+rake task creation for POM and FEATURE
+==================================================================
+1.rake g task pom_generation create_pom_file
+
+2.namespace :pom_generation do
+  desc "pass your pagename and page_url"
+  require "#{Rails.root}/spec/support/auto_generation_pom"
+  task :create_pom_file,[:page_name, :page_url] => :environment do |task, args|
+    pom = AutoGeneratingPOM.new
+    pom.create_pom_file args.page_name,args.page_url
+  end
+end
+
+3.rake pom_generation:create_pom_file["dashboard","https://revremit-qa.revenuemed.com/training/dashboard"]
+
+4. rails g task feature_generation feature_file_single_scenario feature_file_multiple_scenario
+
+5.namespace :feature_generation do
+  require "#{Rails.root}/spec/support/auto_generation_feature"
+  desc "Single Scenario"
+  task :feature_file_single_scenario,[:excel_path] => :environment do |task,args|
+    feature = AutoGeneratingFeature.new
+    feature.create_feature_file_single_scenario args.excel_path
+  end
+
+  desc "multiple Scenario"
+  task :feature_file_multiple_scenario,[:excel_path] => :environment do |task,args|
+    feature = AutoGeneratingFeature.new
+    feature.create_feature_file_multiple_scenario args.excel_path
+  end
+
+end
+
+
